@@ -34,8 +34,9 @@ Route::prefix('releases')->name('releases.')->group( function(){
 });
 Route::prefix('users')->name('users.')->group( function(){
     // Route::get('/', [UserController::class, 'index'])->name('users');
-    Route::get('/login', [UserController::class, 'login'])->name('login');
-    // Route::get('/login', [UserController::class, 'index'])->name('');
-
-    
+    // Route::get('/login', [UserController::class, 'login'])->name('login');
+    // Route::get('/login', [UserController::class, 'index'])->name('');    
 });
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
