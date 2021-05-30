@@ -22,6 +22,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('blog')->name('blog.')->group( function(){
     Route::get('/', [BlogController::class, 'index'])->name('blog');
+    Route::get('/posts', [BlogController::class, 'posts'])->name('posts');
+    Route::get('/post/{id}', [BlogController::class, 'postById'])->name('post');
+    Route::get('/search', [BlogController::class, 'search'])->name('search');
+    Route::get('/filter/{category}', [BlogController::class, 'filter'])->name('filtered');
     
 });
 Route::prefix('artists')->name('artists.')->group( function(){
@@ -37,6 +41,7 @@ Route::prefix('users')->name('users.')->group( function(){
     // Route::get('/login', [UserController::class, 'login'])->name('login');
     // Route::get('/login', [UserController::class, 'index'])->name('');    
 });
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->prefix('posts')->name('posts.')->group( function(){
+    Route::get('/createPost',[BlogController::class, 'createPost'])->name('createPost');
+    Route::post('/savePost',[BlogController::class, 'savePost'])->name('savePost');
+});
