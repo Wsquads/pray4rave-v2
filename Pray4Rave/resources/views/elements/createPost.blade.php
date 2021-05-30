@@ -11,7 +11,7 @@
               <div class="flex  rounded-full md:p-4 p-2 ">
                   <img class="w-44" src="{{asset('/img/logo.png')}}" alt="">
               </div>
-            </div>
+            </div> 
         
             <div class="flex justify-center">
   

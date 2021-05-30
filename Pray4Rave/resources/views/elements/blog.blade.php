@@ -54,6 +54,8 @@
             </a>
           </div>
           <div class="grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 pt-24 space-x-0 lg:flex lg:space-x-6">
+            
+            
             @foreach ($postsByDate as $postDated)
               <div class="rounded  w-full lg:w-1/2 lg:w-1/3  lg:p-0">
                 
@@ -62,7 +64,7 @@
                   @endphp
                   @if ($img !=null)
                     <div class="lg:h-3/5 w-full">
-                      <a href="" class=" rounded cursor-pointer">
+                      <a href="{{route('blog.post', ['id'=>$postDated->id])}}" class=" rounded cursor-pointer">
                         <img src="{{asset('/storage/'.$img->n_Img)}}" class="rounded w-full" alt="technology" />
                       </a>
                     </div>
@@ -72,7 +74,7 @@
                   <br>
                 <div class=" rounded hover:bg-gray-200 grid rows grid-flow-row md:auto-rows-min w-full">
                   <div>
-                    <a href="">
+                    <a href="{{route('blog.post', ['id'=>$postDated->id])}}">
                       <h2 class="font-bold text-2xl text-gray-700 uppercase hover:text-purple-500">{{$postDated->tittle}}</h2>
                     </a>
                   </div>
@@ -125,7 +127,7 @@
                     $a_img = $a_post->image;
                 @endphp
                 <div class="lg:h-2/5 w-full">
-                  <a class=" rounded cursor-pointer">
+                  <a href="{{route('blog.post', ['id'=>$a_post->id])}}" class=" rounded cursor-pointer">
                     <img src="{{asset('/storage/'.$a_img->n_Img)}}" class="rounded w-full" alt="technology" />
                   </a>
                 </div>
@@ -133,7 +135,7 @@
                 <hr>
                 <br>
                 <div>
-                  <a href="">
+                  <a href="{{route('blog.post', ['id'=>$a_post->id])}}">
                     <h2 class="font-bold text-2xl text-gray-800 hover:text-purple-500">{{$a_post->tittle}}</h2>
                   </a>
                 </div>
@@ -163,7 +165,7 @@
                     $t_img = $t_post->image;
                 @endphp
                 <div class="lg:h-2/5 w-full">
-                  <a class=" rounded cursor-pointer">
+                  <a href="{{route('blog.post', ['id'=>$t_post->id])}}" class=" rounded cursor-pointer">
                     <img src="{{asset('/storage/'.$t_img->n_Img)}}" class="rounded w-full" alt="technology" />
                   </a>
                 </div>
@@ -171,7 +173,7 @@
                 <hr>
                 <br>
                 <div>
-                  <a href="">
+                  <a href="{{route('blog.post', ['id'=>$t_post->id])}}">
                     <h2 class="font-bold text-2xl text-gray-800 hover:text-purple-500">{{$t_post->tittle}}</h2>
                   </a>
                 </div>

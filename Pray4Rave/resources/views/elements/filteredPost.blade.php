@@ -60,7 +60,7 @@
                   <img src="{{asset('/storage/'.$s_img->n_Img)}}" class="rounded w-full" alt="technology" />
                 </a>
               </div>
-              <a href=""  class="pt-4 hover:bg-purple-200 w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+              <a href="{{route('blog.post', ['id'=>$post->id])}}" class="pt-4 hover:bg-purple-200 w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
                 <div class="">
                   <div class="px-5  py-3">
                     <h3 class="font-bold text-gray-700 mb-2 uppercase">{{$post->tittle}}</h3>
