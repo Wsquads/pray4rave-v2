@@ -3,7 +3,7 @@
 @section('content')
     
 <div class="">
-    <div class='flex max-w-xl my-10 bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
+    <div class='flex max-w-3xl my-10 bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
         <div class='flex items-center w-full'>
             <div class='w-full'>
                 <div class="flex flex-row mt-2 px-2 py-3 mx-3">
@@ -20,7 +20,15 @@
                     <div class='text-gray-500 font-thin text-sm mb-6 mx-3 px-2'>{{$post_id->description}}</div>
                 </div>
                 <div class="flex justify-start mb-4 border-t border-gray-100">
-                    <div class="flex justify-center w-full mt-1 pt-2 pr-4">
+                    <div class="flex justify-start w-full mt-1 pt-2 pl-5">
+                        <span class="transition ease-out duration-300  py-1 h-8 px-2  text-center rounded text-gray-400  mr-2">
+                            {{$post_id->created_at->format('j F, Y')}}
+                        </span>
+                        
+                    </div>
+                    
+                    <div class="flex justify-end w-full mt-1 pt-2 pr-4">
+                        
                         <a href="{{$post_id->link}}"target="blank">
                             <span class="transition ease-out duration-300 hover:text-gray-700 py-1 hover:bg-gray-200 bg-purple-500 h-8 px-2  text-center rounded-full text-gray-100  mr-2">
                                 Buy now
@@ -84,23 +92,17 @@
                         </a>
                         
                 </div>
-                <div class="flex justify-start mb-4 border-t border-gray-100">
-                    
-                    <div class="flex justify-end w-full mt-1 pt-2 pl-5">
-                        <span class="transition ease-out duration-300  py-1 h-8 px-2  text-center rounded text-gray-400  mr-2">
-                            {{$post_id->created_at->format('j F, Y')}}
-                        </span>
-                        
-                    </div>
-                </div>
+                
+                
                 <div class="flex w-full border-t border-gray-100">
                     <div class="mt-3 mx-5 flex flex-row">
-                        <div class='flex text-gray-700 font-normal text-sm rounded-md mb-2 mr-4 items-center'>Comments:<div class="ml-1 text-gray-400 font-thin text-ms"> 30</div></div>
+                        <div class='flex text-gray-700 font-normal text-sm rounded-md mb-2 mr-4 items-center'>Comments:<div class="ml-1 text-gray-400 font-thin text-ms">{{count($post_id->coments)}}</div></div>
                     </div>
                    
                 </div>
-                <form action="">
-                    <div class="relative flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 focus-within:text-gray-400">
+                <form action="{{route('comments.create',['id'=>$post_id->id])}}" method="POST">
+                    @csrf
+                    <div class="relative flex items-center self-center w-full w-full p-4 overflow-hidden text-gray-600 focus-within:text-gray-400">
                         <img class='w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer' alt='User avatar' src='https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200'>
                         <span class="absolute inset-y-0 right-0 flex items-center pr-6">
                             <button type="submit" class="p-1 m-1 focus:outline-none focus:shadow-none hover:text-blue-500">
@@ -110,7 +112,48 @@
                         <input type="text" name="description" class="w-full py-2 pl-4 pr-10 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-blue-500 focus:text-gray-900 focus:shadow-outline-blue" style="border-radius: 25px" placeholder="Post a comment..." autocomplete="off">
                     </div>
                 </form>
+                @php
+                    $comments = $post_id->coments;
+                @endphp
+                @if ($post_id->coments)
+                    @foreach ($post_id->coments as $comment)
+                        @auth
+                            
+                            @if (Auth::user()->id == $comment->user_id)
+                                <div class="bg-white rounded-lg p-3  flex flex-col justify-center  shadow mx-4 rounded mb-4">
+                                    <div class="flex flex-row justify-end mr-2">
+                                    <img alt="avatar" width="48" height="48" class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4" src="https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png">
+                                        
+                                        <h3 class="text-purple-600 font-semibold text-lg text-center md:text-left ">{{$comment->user->name}}</h3>
+                                    </div>
+                                    <p  class="text-gray-600 flex flex-row justify-end mr-2 text-lg">
+                                        {{$comment->description}}
+                                        
+                                    </p>
+                                </div>
+                            @else
+                                <div class="bg-white rounded-lg p-3  flex flex-col justify-center  shadow mx-4 rounded mb-4">
+                                    <div class="flex flex-row justify-start mr-2">
+                                    <img alt="avatar" width="48" height="48" class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4" src="https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png">
+                                    <h3 class="text-purple-600 font-semibold text-lg text-center md:text-left ">{{$comment->user->name}}</h3>
+                                    </div>
+                                
+                                
+                                    <p class="ml-14 flex flex-row justify-start p-4  shadow border-purple-400 rounded text-gray-600 text-lg  md:text-left ">
+                                        {{$comment->description}}
+                                    </p>
+                                
+                                </div>
+                                
+                            @endif
+                            
+                        @endauth
+                    @endforeach
+                
+                @endif
+                
             </div>
+            
         </div>
     </div>
     </div>

@@ -38,7 +38,7 @@
            
             <div class="relative"  >
                 <div class="inline-block relative " x-data="{ open: false }">
-                    <button @click="open = !open" class="focus:outline-none cursor-pointer inline-block text-gray-700 hover:text-black flex border border-gray-400 rounded p-2 pl-3 pr-1 ">Filter</button>
+                    <button @click="open = !open" class="focus:outline-none cursor-pointer inline-block bg-purple-500 text-gray-100 hover:text-black flex border border-gray-400 rounded px-3 py-2">Filter</button>
                   
                     <ul x-show="open" class="bg-white absolute mt-2 shadow rounded w-40 py-1 text-gray-700">
                         <li><a href="{{route('blog.filtered', ['category'=>'audio'])}}" class="py-1 px-3 block hover:bg-indigo-100">Audio</a></li>

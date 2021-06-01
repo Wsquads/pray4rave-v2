@@ -13,10 +13,10 @@ class Comments extends Model
 
     public function post()
     {
-        return $this->belognsTo(Post::class, 'id');
+        return $this->belongsTo(Post::class, 'id');
     }
     public function user()
     {
-        return $this->belognsTo(User::class, 'id');
+        return $this->belongsTo(User::class);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\a_Img;
 use Illuminate\Http\Request;
 
-class CommentsController extends Controller
+class AImgController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,19 +22,9 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createComment(Request $request, $id){
-        $request->validate([
-            'description' => 'required|string|max:255',
-            ]);
-            if($request->user()){
-                $comment = new Comments();
-                $comment->description = $request->description;
-                $comment->user_id = $request->user()->id;
-                $comment->post_id = $id;
-                $comment->save();
-                return back();
-            }
-        
+    public function create()
+    {
+        //
     }
 
     /**
@@ -51,10 +41,10 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\a_Img  $a_Img
      * @return \Illuminate\Http\Response
      */
-    public function show(Comments $comments)
+    public function show(a_Img $a_Img)
     {
         //
     }
@@ -62,10 +52,10 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\a_Img  $a_Img
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comments $comments)
+    public function edit(a_Img $a_Img)
     {
         //
     }
@@ -74,10 +64,10 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\a_Img  $a_Img
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, a_Img $a_Img)
     {
         //
     }
@@ -85,10 +75,10 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\a_Img  $a_Img
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comments $comments)
+    public function destroy(a_Img $a_Img)
     {
         //
     }

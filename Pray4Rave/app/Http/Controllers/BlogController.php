@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Image;
+use App\Models\Comments;
 
 class BlogController extends Controller
 {
@@ -20,11 +21,11 @@ class BlogController extends Controller
                         ->get();
         return view('elements.blog', compact('postsByDate', 'technologyPosts', 'audioPosts'));
     }
-    public function createPost(Request $request){
+    public function managePost(Request $request){
         if($request->user()->is_admin == 0){
             return redirect()->route('home');
         }
-        return view('elements.createPost');
+        return view('elements.managePost');
     }
     public function savePost(Request $request){
         if($request->user()->is_admin == 0){
@@ -32,7 +33,7 @@ class BlogController extends Controller
         }
         $request->validate([
             'tittle' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'category' => 'required|string|max:10',
             'link' => 'required|string',
             'images' => 'required',
@@ -62,9 +63,8 @@ class BlogController extends Controller
         return back()->with('success', 'Post uploaded successfully');
     }
     public function search(Request $request){
-        if ($request->tittle == null) {
-            return view('elements.posts');
-
+        if(!$request->tittle || $request->tittle == null){
+            return redirect()->route('blog.posts');
         }
         
         if($request->category == 'all'){
@@ -81,7 +81,7 @@ class BlogController extends Controller
             $s_posts = Posts::where('tittle', 'Like', '%' . request('tittle') . '%')->where('category', $request->category)->with('image')->paginate(10);
             return view('elements.searchPost', compact('s_posts'));
         }
-        return view('elements.posts');
+        return redirect()->route('blog.posts');
     }
     public function posts(){
 
@@ -97,9 +97,10 @@ class BlogController extends Controller
         return view('elements.filteredPost', compact('f_posts'));
     }
     public function postById($id){
-        $post_id = Posts::where('id', $id)->with('image')->first();
+        $post_id = Posts::where('id', $id)->with('image','coments')->first();
         
         
         return view('elements.postById', compact('post_id'));
     }
+    
 }

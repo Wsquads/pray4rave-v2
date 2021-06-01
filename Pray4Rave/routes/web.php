@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\RealesesController;
 use App\Http\Controllers\UserController;
 
@@ -28,8 +29,13 @@ Route::prefix('blog')->name('blog.')->group( function(){
     Route::get('/filter/{category}', [BlogController::class, 'filter'])->name('filtered');
     
 });
+Route::middleware(['auth:sanctum', 'verified'])->prefix('comments')->name('comments.')->group( function(){
+    Route::post('/create/{id}', [CommentsController::class, 'createComment'])->name('create');
+    
+});
 Route::prefix('artists')->name('artists.')->group( function(){
     Route::get('/', [ArtistController::class, 'index'])->name('artists');
+    Route::get('/artist/{id}', [ArtistController::class, 'artistById'])->name('artist');
     
 });
 Route::prefix('releases')->name('releases.')->group( function(){
@@ -42,6 +48,10 @@ Route::prefix('users')->name('users.')->group( function(){
     // Route::get('/login', [UserController::class, 'index'])->name('');    
 });
 Route::middleware(['auth:sanctum', 'verified'])->prefix('posts')->name('posts.')->group( function(){
-    Route::get('/createPost',[BlogController::class, 'createPost'])->name('createPost');
+    Route::get('/managePost',[BlogController::class, 'managePost'])->name('managePost');
     Route::post('/savePost',[BlogController::class, 'savePost'])->name('savePost');
+});
+Route::middleware(['auth:sanctum', 'verified'])->prefix('manageArtists')->name('manageArtists.')->group( function(){
+    Route::get('/manageArtists',[ArtistController::class, 'manageArtists'])->name('manageArtists');
+    Route::post('/saveArtist',[ArtistController::class, 'saveArtist'])->name('saveArtist');
 });

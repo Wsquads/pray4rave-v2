@@ -15,6 +15,13 @@ class CreateArtistsTable extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
+            $table->string('nick');
+            $table->string('c_name');
+            $table->date('birthdate');
+            $table->longText('description');
+            $table->string('l_instagram');
+            $table->string('l_soundcloud');
+            $table->longText('soundcloud');
             $table->timestamps();
         });
     }
