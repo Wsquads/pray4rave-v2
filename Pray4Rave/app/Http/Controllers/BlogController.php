@@ -83,6 +83,7 @@ class BlogController extends Controller
         }
         return redirect()->route('blog.posts');
     }
+
     public function posts(){
 
         $posts = Posts::with('image')->paginate(35);
@@ -90,6 +91,7 @@ class BlogController extends Controller
 
         
     }
+    
     public function filter($category){
         $f_posts = Posts::where('category', $category)->with('image')->paginate(10);
         

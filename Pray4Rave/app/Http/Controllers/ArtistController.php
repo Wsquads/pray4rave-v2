@@ -68,7 +68,7 @@ class ArtistController extends Controller
         return back()->with('success', 'Artist uploaded successfully');
     }
     public function artistById($id){
-        $artistById = Artists::where('id', $id)->with('image');
+        $artistById = Artists::where('id', $id)->with('image')->first();
         return view('elements.artistById',compact('artistById'));
     }
 }

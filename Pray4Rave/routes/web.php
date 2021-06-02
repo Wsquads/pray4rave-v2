@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentsController;
-use App\Http\Controllers\RealesesController;
+use App\Http\Controllers\ReleaseController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -39,7 +39,8 @@ Route::prefix('artists')->name('artists.')->group( function(){
     
 });
 Route::prefix('releases')->name('releases.')->group( function(){
-    Route::get('/', [ReleasesController::class, 'index'])->name('releases');
+    Route::get('/', [ReleaseController::class, 'index'])->name('releases');
+    Route::get('/search', [ReleaseController::class, 'search'])->name('search');
     
 });
 Route::prefix('users')->name('users.')->group( function(){
@@ -54,4 +55,8 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('posts')->name('posts.')
 Route::middleware(['auth:sanctum', 'verified'])->prefix('manageArtists')->name('manageArtists.')->group( function(){
     Route::get('/manageArtists',[ArtistController::class, 'manageArtists'])->name('manageArtists');
     Route::post('/saveArtist',[ArtistController::class, 'saveArtist'])->name('saveArtist');
+});
+Route::middleware(['auth:sanctum', 'verified'])->prefix('manageReleases')->name('manageReleases.')->group( function(){
+    Route::get('/manageReleases',[ReleaseController::class, 'manageReleases'])->name('manageReleases');
+    Route::post('/saveRelease',[ReleaseController::class, 'saveRelease'])->name('saveRelease');
 });

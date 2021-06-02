@@ -1,6 +1,6 @@
 @extends('welcome')
 @section('content')
-    <section class="bg-gray-200">
+    <section class="bg-gray-100">
         <h2 class="text-3xl text-center font-bold pt-24 text-gray-800">Our Artists</h2>
         <p class="max-w-4xl mx-auto text-lg mt-8 text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse
             cillum
