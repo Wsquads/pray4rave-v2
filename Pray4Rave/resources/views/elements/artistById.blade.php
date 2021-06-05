@@ -3,7 +3,7 @@
 <div class="container px-6 py-10 mx-auto md:py-16">
     <div class="lg:float-right lg:max-w-sm my-10 pt-8 items-center justify-center">
         <div class="">
-            <img src="{{asset('/storage/'.$artistById->image->n_Img)}}"
+            <img src="{{asset('images')}}/{{$artistById->image->n_Img}}"
                 alt="Artist Photo" class="w-full  rounded" />
         </div>
         <div class="grid  mt-8 sm:grid-cols-2">

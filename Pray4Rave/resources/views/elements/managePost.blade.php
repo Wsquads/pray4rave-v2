@@ -1,11 +1,11 @@
 @extends('welcome')
 @section('content')
     
-<form  method="post" action="{{ route('posts.savePost') }}" enctype="multipart/form-data"  class="mb-44 mt-16">
+<form  method="post" action="{{ route('posts.savePost') }}" enctype="multipart/form-data"  class="">
     @csrf
     
     <div>
-      <div class="flex h-screen bg-gray-200 items-center justify-center  mt-32 mb-32">
+      <div class="flex h-screen bg-gray-200 items-center justify-center  mt-14 mb-32">
         <div class="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
             <div class="flex justify-center py-4">
               <div class="flex  rounded-full md:p-4 p-2 ">
@@ -84,7 +84,6 @@
                   @endforeach
                 @endif
             </div>
-        
             <div class='flex items-center justify-center  md:gap-8 gap-4 pt-8 pb-5'>
               <button type="submit" class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2' >Create</button>
             </div>
@@ -95,4 +94,68 @@
   </div>
   </form>
   
+  <div class="overflow-x-auto">
+    <div class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+        <div class="w-full lg:w-5/6">
+            <div class="bg-white shadow-md rounded my-6">
+                <table class="min-w-max w-full table-auto">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">id</th>
+                            <th class="py-3 px-6 text-left">Title</th>
+                            <th class="py-3 px-6 text-center">Category</th>
+                            <th class="py-3 px-6 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm font-light">
+                        @foreach ($posts as $item)
+                            
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                <div class="flex items-center">
+                                   
+                                    <span class="font-medium">{{$item->id}}</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-6 text-left">
+                                <div class="flex items-center">
+                                  <div class="mr-2">
+                                    <img class="w-6 h-6 rounded-full" src="{{asset('images')}}/{{$item->image->n_Img}}"/>
+                                </div>
+                                    <span>{{$item->tittle}}</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <div class="">
+                                    <span>{{$item->category}}</span>
+                                  
+                                </div>
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <div class="flex item-center justify-center">
+                                    <div class="m-1 pt-2  transform hover:text-purple-500 hover:scale-110">
+                                        <a class="shadow bg-purple-400 rounded  text-gray-100 p-2" href="{{route('posts.editar', ['id'=> $item->id])}}">Editar</a>
+                                    </div>
+                                    <div class=" m-1 shadow transform hover:text-purple-500 hover:scale-110">
+                                        <form action="{{route('posts.delete', ['id'=> $item->id])}}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="shadow bg-red-400 text-gray-100 rounded p-2">
+                                                Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+            </div>
+            {{$posts->links()}}
+        </div>
+    </div>
+</div>
 @endsection

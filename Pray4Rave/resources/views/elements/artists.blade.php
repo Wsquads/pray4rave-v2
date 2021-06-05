@@ -20,7 +20,7 @@
                         >
                         <a href="{{route('artists.artist', ['id'=>$item->id])}}">
                             <img class="object-cover object-center w-full h-72 rounded-md shadow"
-                                src="{{asset('/storage/'.$item->image->n_Img)}}">
+                                src="{{asset('images')}}/{{$item->image->n_Img}}">
                         </a>
                         <h3 class="mt-2 font-medium text-gray-700"><a href="{{route('artists.artist', ['id'=>$item->id])}}">{{$item->nick}}</a></h3>
                         <p class="text-sm text-gray-600">{{$item->birthdate}}</p>

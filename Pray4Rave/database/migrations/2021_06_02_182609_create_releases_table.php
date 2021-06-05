@@ -16,11 +16,10 @@ class CreateReleasesTable extends Migration
         Schema::create('releases', function (Blueprint $table) {
             $table->id();
             $table->string('soundcloud');
-            $table->string('l_soundcloud');
             $table->string('tittle');
             $table->json('category');
-            $table->foreignId('album_id')->constrained('albums');
-            $table->foreignId('artist_id')->constrained('artists');
+            $table->foreignId('album_id')->constrained('albums')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('artist_id')->constrained('artists')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

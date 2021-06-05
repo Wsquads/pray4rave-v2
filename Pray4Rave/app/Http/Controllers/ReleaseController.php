@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Release;
 use App\Models\Album;
+use App\Models\alabum_Img;
 use Illuminate\Http\Request;
 
 class ReleaseController extends Controller
@@ -41,41 +42,40 @@ class ReleaseController extends Controller
         if($request->user()->is_admin == 0){
             return redirect()->route('home');
         }
-        return view('elements.manageRelease');
+        $albums = Album::orderBy('id','asc')->paginate(10);
+        return view('elements.manageRelease', compact('albums'));
     }
-    public function saveRelease(Request $request){
+    public function saveAlbum(Request $request){
         if($request->user()->is_admin == 0){
             return redirect()->route('home');
         }
         $request->validate([
             'tittle' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'required|string|max:10',
-            'link' => 'required|string',
-            'images' => 'required',
+            'soundcloud' => 'required|string',
+            'image' => 'required',
         ]);
         
-        if ($request->hasfile('images')) {
+        if ($request->hasfile('image')) {
 
-            $post=new Posts();
-            $post->tittle = $request->tittle;
-            $post->description = $request->description;
-            $post->link = $request->link;
-            $post->category = $request->category;
-            $post->save();
-            $p_id = $post->id;
+            $album=new Album();
+            $album->tittle = $request->tittle;
+            $album->description = $request->description;
+            $album->soundcloud = $request->soundcloud;
+            $album->save();
+            $a_id = $album->id;
 
-            $images = $request->file('images');
-            $name = time().'.'.$images->extension();
-            $path = $images->storeAs('public', $name);
+            $image = $request->file('image');
+            $name = time().'.'.$image->extension();
+            $path = $image->move(public_path('images'), $name);
             
-            Image::create([
-                'post_id' => $p_id,
+            
+            alabum_Img::create([
+                'album_id' => $a_id,
                 'n_Img' => $name,
-                'p_Img' => '/storage/app/  '.$path
             ]);
             
         }
-        return back()->with('success', 'Post uploaded successfully');
+        return back()->with('success', 'Album uploaded successfully');
     }
 }

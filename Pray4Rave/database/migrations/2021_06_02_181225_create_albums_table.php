@@ -15,13 +15,9 @@ class CreateAlbumsTable extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
-            $table->string('soundcloud');
-            $table->string('l_soundcloud');
-            $table->string('description');
+            $table->longText('soundcloud');
+            $table->longText('description');
             $table->string('tittle');
-            $table->json('category');
-            
-
             $table->timestamps();
         });
     }

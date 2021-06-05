@@ -15,7 +15,7 @@ class CreateAImgsTable extends Migration
     {
         Schema::create('a__imgs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('artist_id')->constrained('artists');
+            $table->foreignId('artist_id')->constrained('artists')->onDelete('cascade')->onUpdate('cascade');
             $table->string('n_Img');
             $table->timestamps();
         });

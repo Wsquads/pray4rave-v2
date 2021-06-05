@@ -1,14 +1,13 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
-
+            <img src="{{asset('/img/logo.png')}}" class="w-40 mx-auto" alt="logo">
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
             <div class="block">

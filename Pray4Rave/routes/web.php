@@ -51,12 +51,29 @@ Route::prefix('users')->name('users.')->group( function(){
 Route::middleware(['auth:sanctum', 'verified'])->prefix('posts')->name('posts.')->group( function(){
     Route::get('/managePost',[BlogController::class, 'managePost'])->name('managePost');
     Route::post('/savePost',[BlogController::class, 'savePost'])->name('savePost');
+    Route::get('/edit/{id}',[BlogController::class, 'editar'])->name('editar');
+    Route::post('/editAndSave/{id}',[BlogController::class, 'editAndSave'])->name('editAndSave');
+    Route::post('/delete/{id}',[BlogController::class, 'delete'])->name('delete');
 });
+
 Route::middleware(['auth:sanctum', 'verified'])->prefix('manageArtists')->name('manageArtists.')->group( function(){
     Route::get('/manageArtists',[ArtistController::class, 'manageArtists'])->name('manageArtists');
+    Route::get('/edit/{id}',[ArtistController::class, 'editar'])->name('editar');
+    Route::post('/editAndSave/{id}',[ArtistController::class, 'editAndSave'])->name('editAndSave');
     Route::post('/saveArtist',[ArtistController::class, 'saveArtist'])->name('saveArtist');
+    Route::post('/delete/{id}',[ArtistController::class, 'delete'])->name('delete');
+
 });
 Route::middleware(['auth:sanctum', 'verified'])->prefix('manageReleases')->name('manageReleases.')->group( function(){
     Route::get('/manageReleases',[ReleaseController::class, 'manageReleases'])->name('manageReleases');
-    Route::post('/saveRelease',[ReleaseController::class, 'saveRelease'])->name('saveRelease');
+    Route::post('/saveAlbum',[ReleaseController::class, 'saveAlbum'])->name('saveAlbum');
+    Route::get('/edit/{id}',[ReleaseController::class, 'editar'])->name('editar');
+
+});
+Route::middleware(['auth:sanctum', 'verified'])->prefix('manageUsers')->name('manageUsers.')->group( function(){
+    Route::get('/manageUsers',[UserController::class, 'manageUsers'])->name('manageUsers');
+    Route::post('/delete/{id}',[UserController::class, 'delete'])->name('delete');
+    Route::get('/edit/{id}',[UserController::class, 'editar'])->name('editar');
+    Route::post('/editAndSave/{id}',[UserController::class, 'editAndSave'])->name('editAndSave');
+    Route::post('/saveRelease',[UserController::class, 'saveRelease'])->name('saveRelease');
 });

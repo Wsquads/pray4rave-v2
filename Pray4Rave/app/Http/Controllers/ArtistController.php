@@ -15,8 +15,12 @@ class ArtistController extends Controller
                 ->get();;
         return view('elements.artists', compact('artists'));
     }
-    public function manageArtists(){
-        return view('elements.manageArtists');
+    public function manageArtists(Request $request){
+        if($request->user()->is_admin == 0){
+            return redirect()->route('home');
+        }   
+        $artists = Artists::orderBy('id', 'asc')->paginate(10);
+        return view('elements.manageArtists', compact('artists'));
     }
     public function saveArtist(Request $request){
         if($request->user()->is_admin == 0){
@@ -56,9 +60,9 @@ class ArtistController extends Controller
 
             $images = $request->file('image');
             $name = time().'.'.$images->extension();
-            
-            $path = $images->storeAs('public', $name);
-            
+            $path = $images->move(public_path('images'), $name);
+
+                        
             $img = new a_Img();
             $img->artist_id = $artist_id;
             $img->n_Img = $name;
@@ -70,5 +74,81 @@ class ArtistController extends Controller
     public function artistById($id){
         $artistById = Artists::where('id', $id)->with('image')->first();
         return view('elements.artistById',compact('artistById'));
+    }
+
+    public function editAndSave(Request $request, $id){
+        if($request->user()->is_admin == 0){
+            return redirect()->route('home');
+        }
+        $validator = Validator::make($request->all(), [
+            'c_name' => 'nullable|string|max:100',
+            'nick' => 'nullable|string|max:10',
+            'description' => 'nullable',
+            'l_soundcloud' => 'nullable|string|max:255',
+            'l_instagram' => 'nullable|string|max:255',
+            'birthdate' => 'nullable',
+
+
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)
+                        ->withInput();
+        }
+    
+        $artist = Artists::where('id',$id)->first();
+        if($request->c_name != null){
+            $artist->c_name = $request->c_name;
+        }elseif($request->birthdate !=null){
+            $artist->birthdate = $request->birthdate;
+        }elseif($request->description !=null){
+            $artist->description = $request->description;
+        }
+        elseif($request->nick !=null){
+            $artist->nick = $request->nick;
+        }elseif($request->soundcloud !=null){
+            $artist->soundcloud = $request->soundcloud;
+        }elseif($request->l_soundcloud !=null){
+            $artist->l_soundcloud = $request->l_soundcloud;
+        }elseif($request->l_instagram !=null){
+            $artist->l_instagram = $request->l_instagram;
+        }
+        
+        $artist->save();
+        if($request->hasfile('image')){
+            
+            $image = a_Img::where('artist_id', $artist->id)->first();
+            if(isset($image)){
+                $images = $request->file('image');
+                $name = time().'.'.$images->extension(); 
+                $path = $images->move(public_path('images'), $name);
+                $image->n_Img = $name;
+                $image->save();
+            }else{
+                $images = $request->file('image');
+                $name = time().'.'.$images->extension(); 
+                $path = $images->move(public_path('images'), $name);
+
+                $image = new a_Img();
+                $image->n_Img = $name;
+                $image->artist_id = $artist->id; 
+                $image->save();
+                
+            }               
+        }
+        return back()->with('success', 'Artist updated successfully');
+    }  
+    public function editar(Request $request, $id){
+        $id_a = $id;
+
+        return view('elements.editArtist', compact('id_a'));
+    }
+    public function delete(Request $request,$id){
+        if($request->user()->is_admin == 0){
+            return redirect()->route('home');
+        }
+        $artist = Artists::where('id',$id)->first();
+        $artist->destroy($artist->id);
+        return redirect()->route('blog.blog');
     }
 }

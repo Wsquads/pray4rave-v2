@@ -65,7 +65,7 @@
                   @if ($img !=null)
                     <div class="lg:h-3/5 w-full">
                       <a href="{{route('blog.post', ['id'=>$postDated->id])}}" class=" rounded cursor-pointer">
-                        <img src="{{asset('/storage/'.$img->n_Img)}}" class="rounded w-full" alt="technology" />
+                        <img src="{{asset('images')}}/{{$img->n_Img}}" class="rounded w-full" alt="technology" />
                       </a>
                     </div>
                       
@@ -128,7 +128,7 @@
                 @endphp
                 <div class="lg:h-2/5 w-full">
                   <a href="{{route('blog.post', ['id'=>$a_post->id])}}" class=" rounded cursor-pointer">
-                    <img src="{{asset('/storage/'.$a_img->n_Img)}}" class="rounded w-full" alt="technology" />
+                    <img src="{{asset('images')}}/{{$a_img->n_Img}}" class="rounded w-full" alt="technology" />
                   </a>
                 </div>
                 <div class=" rounded hover:bg-gray-200 mt-12 grid rows grid-flow-row md:auto-rows-min w-full">
@@ -166,7 +166,7 @@
                 @endphp
                 <div class="lg:h-2/5 w-full">
                   <a href="{{route('blog.post', ['id'=>$t_post->id])}}" class=" rounded cursor-pointer">
-                    <img src="{{asset('/storage/'.$t_img->n_Img)}}" class="rounded w-full" alt="technology" />
+                    <img src="{{asset('images')}}/{{$t_img->n_Img}}" class="rounded w-full" alt="technology" />
                   </a>
                 </div>
                 <div class=" rounded hover:bg-gray-200 mt-12 grid rows grid-flow-row md:auto-rows-min w-full">
