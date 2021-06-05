@@ -99,18 +99,23 @@ class ArtistController extends Controller
         $artist = Artists::where('id',$id)->first();
         if($request->c_name != null){
             $artist->c_name = $request->c_name;
-        }elseif($request->birthdate !=null){
+        }
+        if($request->birthdate !=null){
             $artist->birthdate = $request->birthdate;
-        }elseif($request->description !=null){
+        }
+        if($request->description !=null){
             $artist->description = $request->description;
         }
-        elseif($request->nick !=null){
+        if($request->nick !=null){
             $artist->nick = $request->nick;
-        }elseif($request->soundcloud !=null){
+        }
+        if($request->soundcloud !=null){
             $artist->soundcloud = $request->soundcloud;
-        }elseif($request->l_soundcloud !=null){
+        }
+        if($request->l_soundcloud !=null){
             $artist->l_soundcloud = $request->l_soundcloud;
-        }elseif($request->l_instagram !=null){
+        }
+        if($request->l_instagram !=null){
             $artist->l_instagram = $request->l_instagram;
         }
         

@@ -12,5 +12,9 @@ class Album extends Model
     public function image()
     {
         return $this->hasOne(alabum_Img::class);
+    } 
+    public function release()
+    {
+        return $this->hasMany(Release::class);
     }  
 }

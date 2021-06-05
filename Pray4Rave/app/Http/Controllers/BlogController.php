@@ -45,12 +45,14 @@ class BlogController extends Controller
         if($request->tittle != null){
             $post->tittle = $request->tittle;
 
-        }elseif($request->description !=null){
+        }
+        if($request->description !=null){
             $post->description = $request->description;
-        }elseif($request->category !=null){
+        }
+        if($request->category !=null){
             $post->category = $request->category;
         }
-        elseif($request->link !=null){
+        if($request->link !=null){
             $post->link = $request->link;
         }
         

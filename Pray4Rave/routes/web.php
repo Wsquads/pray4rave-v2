@@ -67,7 +67,13 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('manageArtists')->name('
 Route::middleware(['auth:sanctum', 'verified'])->prefix('manageReleases')->name('manageReleases.')->group( function(){
     Route::get('/manageReleases',[ReleaseController::class, 'manageReleases'])->name('manageReleases');
     Route::post('/saveAlbum',[ReleaseController::class, 'saveAlbum'])->name('saveAlbum');
+    Route::post('/saveRelease',[ReleaseController::class, 'saveRelease'])->name('saveRelease');
+    Route::post('/editAlbumAndSave/{id}',[ReleaseController::class, 'editAlbumAndSave'])->name('editAlbumAndSave');
+    Route::post('/editReleaseSave/{id}',[ReleaseController::class, 'editReleaseAndSave'])->name('editReleaseAndSave');
     Route::get('/edit/{id}',[ReleaseController::class, 'editar'])->name('editar');
+    Route::get('/editRelease/{id}',[ReleaseController::class, 'editarRelease'])->name('editarRelease');
+    Route::post('/delete/{id}',[ReleaseController::class, 'delete'])->name('delete');
+    Route::post('/deleteRelease/{id}',[ReleaseController::class, 'deleteRelease'])->name('deleteRelease');
 
 });
 Route::middleware(['auth:sanctum', 'verified'])->prefix('manageUsers')->name('manageUsers.')->group( function(){

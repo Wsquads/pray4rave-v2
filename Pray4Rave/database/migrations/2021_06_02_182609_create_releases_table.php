@@ -15,11 +15,12 @@ class CreateReleasesTable extends Migration
     {
         Schema::create('releases', function (Blueprint $table) {
             $table->id();
-            $table->string('soundcloud');
+            $table->longText('soundcloud');
             $table->string('tittle');
             $table->json('category');
+            $table->timestamps();
+
             $table->foreignId('album_id')->constrained('albums')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('artist_id')->constrained('artists')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

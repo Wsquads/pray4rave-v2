@@ -1,7 +1,7 @@
 @extends('welcome')
 @section('content')
     
-<form  method="post" action="{{ route('manageArtists.saveArtist') }}" enctype="multipart/form-data"  class="py-20">
+<form  method="post" action="{{ route('manageArtists.saveArtist') }}" enctype="multipart/form-data"  class="py-28">
     @csrf
     
     <div>

@@ -18,10 +18,10 @@
             <div class="max-w-5xl px-6 py-16 mx-auto">
                 <div class="items-center md:flex md:space-x-6">
                     <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="500">
-                        <h3 class="text-2xl font-bold text-gray-800"><a href="">Events</a></h3>
+                        <h3 class="text-2xl font-bold text-gray-800"><a href="{{route('artists.artists')}}">Artists</a></h3>
                         <p class="max-w-md mt-4 mb-8 text-gray-600">In Pray4rave we hardly work on giving you the most recent DNB from all accross the world mixed with our favorite tunes, with the objetive of making you to feel mind-full and enjoy the sessions.</p>
                         <a class=" py-4 px-6 text-md font-medium text-center bg-purple-500 text-gray-100 transition-colors duration-300 transform border-doble border-1 border-gray-900 rounded hover:bg-gray-800"
-                        href="#">Check</a>
+                        href="{{route('artists.artists')}}">Check</a>
                     </div>
         
                     <div class="mt-8 md:mt-0 md:w-1/2" data-aos="fade-right" data-aos-duration="800">
@@ -50,10 +50,10 @@
                     </div>
         
                     <div class="mt-8 md:mt-0 md:w-1/2">
-                        <a href=""><h3 class="text-2xl font-semibold text-gray-800">Blog</h3></a> 
+                        <a href="{{route('blog.blog')}}"><h3 class="text-2xl font-semibold text-gray-800">Blog</h3></a> 
                         <p class="max-w-md mt-4 mb-8 text-gray-600">Check Out our Audio and mixing reviews so you can learn about mixing or producing, build your songs or sessions with the same prooducts we use or we had used once.</p>
                         <a class=" py-4 px-6 text-md font-medium text-center bg-purple-500 text-gray-100 transition-colors duration-300 transform border-doble border-1 border-gray-900 rounded hover:bg-gray-800"
-                        href="#">Check</a>
+                        href="{{route('blog.blog')}}">Check</a>
                     </div>
                 </div>
             </div>
