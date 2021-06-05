@@ -58,12 +58,10 @@
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
                             <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
-                                <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Manage Artists</a>
-                                <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Manage Releases</a>
-                                <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="">Manage Posts</a>
+                                <a class="block px-4 py-2 mt-2 text-lg text-gray-700 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('users.verPerfil',['id'=>Auth::user()->id])}}">Your profile</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <input type="submit" value="LogOut" class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                                    <input type="submit" value="LogOut" class="block px-4 py-2 mt-2 text-lg text-gray-700 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                                 </form>
                             </div>
                         </div>
@@ -96,15 +94,6 @@
               </div>
       
               <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
-                <h6 class="font-semibold text-gray-700 mb-4">Company</h6>
-                <ul>
-                  <li> <a href="" class="block text-gray-600 py-2">Team</a> </li>
-                  <li> <a href="" class="block text-gray-600 py-2">About us</a> </li>
-                  <li> <a href="" class="block text-gray-600 py-2">Press</a> </li>
-                </ul>
-              </div>
-      
-              <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
                 <h6 class="font-semibold text-gray-700 mb-4">Content</h6>
                 <ul>
                   <li> <a href="" class="block text-gray-600 py-2">Blog</a> </li>
@@ -124,9 +113,8 @@
               </div>
       
             </div>
-        <div class="container flex items-center justify-between px-6 py-8 mx-auto">
+        <div class="container flex items-center justify-end px-6 py-8 mx-auto">
             <p class="text-gray-500">© 2019-2021 All Rights Reserved.</p>
-            <p class="font-medium text-gray-700">Terms of Service</p>
         </div>
     </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

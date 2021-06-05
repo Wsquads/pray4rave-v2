@@ -17,9 +17,7 @@ class UserController extends Controller
         return view('elements.manageUsers', compact('users'));
     }
     public function delete(Request $request,$id){
-        if($request->user()->is_admin == 0){
-            return redirect()->route('home');
-        }
+        
         $user = User::where('id',$id)->first();
         $user->delete($user->id);
         return back();
@@ -71,5 +69,16 @@ class UserController extends Controller
             }               
         }
         return back()->with('success', 'user updated successfully');
-    }          
+    } 
+    public function verPerfil(Request $request, $id){
+        $id_u = $id;
+        
+        $user_id = User::where('id', $id)->first();
+        if($request->user()->id == $user_id->id){
+            return view('elements.verPerfil', compact('id_u', 'user_id'));
+
+        }else{
+            return redirect()->route('home');
+        }
+    }        
 }

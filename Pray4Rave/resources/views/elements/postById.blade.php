@@ -163,7 +163,8 @@
                                     @endif  
                                 </div>
                                 <p  class="ml-14 flex flex-row justify-end p-4  shadow border-purple-400 rounded text-gray-600 text-lg  md:text-right">
-                                    {{$comment->description}}
+                                    {!! nl2br($comment->description) !!}
+
                                     
                                 </p>
                             </div>
@@ -182,7 +183,8 @@
                             
                             
                                 <p class="ml-14 flex flex-row justify-start p-4  shadow border-purple-400 rounded text-gray-600 text-lg  md:text-left ">
-                                    {{$comment->description}}
+                                    {!! nl2br($comment->description) !!}
+
                                 </p>
                             
                             </div>

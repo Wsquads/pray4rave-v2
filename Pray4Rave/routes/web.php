@@ -40,13 +40,12 @@ Route::prefix('artists')->name('artists.')->group( function(){
 });
 Route::prefix('releases')->name('releases.')->group( function(){
     Route::get('/', [ReleaseController::class, 'index'])->name('releases');
-    Route::get('/search', [ReleaseController::class, 'search'])->name('search');
+    Route::get('/album/{id}', [ReleaseController::class, 'albumById'])->name('release');
     
 });
-Route::prefix('users')->name('users.')->group( function(){
-    // Route::get('/', [UserController::class, 'index'])->name('users');
-    // Route::get('/login', [UserController::class, 'login'])->name('login');
-    // Route::get('/login', [UserController::class, 'index'])->name('');    
+Route::middleware(['auth:sanctum', 'verified'])->prefix('users')->name('users.')->group( function(){
+    Route::get('/user/{id}',[UserController::class, 'verPerfil'])->name('verPerfil');
+    Route::post('/delete/{id}',[UserController::class, 'deleteUser'])->name('delete');
 });
 Route::middleware(['auth:sanctum', 'verified'])->prefix('posts')->name('posts.')->group( function(){
     Route::get('/managePost',[BlogController::class, 'managePost'])->name('managePost');

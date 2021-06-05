@@ -240,4 +240,9 @@ class ReleaseController extends Controller
 
         return back()->with('success', 'Release uploaded successfully');
     }
+    public function albumById($id){
+        $album_id = Album::with('image')->find($id);
+        
+        return view('elements.albumById', compact('album_id'));
+    }
 }
