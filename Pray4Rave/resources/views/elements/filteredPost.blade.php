@@ -57,7 +57,7 @@
               
               <div class="w-full">
                 <a href="{{route('blog.post', ['id'=>$post->id])}}" class=" rounded cursor-pointer">
-                  <img src="{{asset('/storage/'.$s_img->n_Img)}}" class="rounded w-full" alt="technology" />
+                  <img src="{{asset('images')}}/{{$s_img->n_Img}}" class="rounded w-full" alt="technology" />
                 </a>
               </div>
               <a href="{{route('blog.post', ['id'=>$post->id])}}" class="pt-4 hover:bg-purple-200 w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">

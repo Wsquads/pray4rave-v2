@@ -63,9 +63,9 @@
                       $img = $postDated->image;
                   @endphp
                   @if ($img !=null)
-                    <div class="lg:h-3/5 w-full">
+                    <div class="">
                       <a href="{{route('blog.post', ['id'=>$postDated->id])}}" class=" rounded cursor-pointer">
-                        <img src="{{asset('images')}}/{{$img->n_Img}}" class="rounded w-full" alt="technology" />
+                        <img src="{{asset('images')}}/{{$img->n_Img}}" class="rounded h-40" alt="technology" />
                       </a>
                     </div>
                       
@@ -126,9 +126,9 @@
                 @php
                     $a_img = $a_post->image;
                 @endphp
-                <div class="lg:h-2/5 w-full">
+                <div class="">
                   <a href="{{route('blog.post', ['id'=>$a_post->id])}}" class=" rounded cursor-pointer">
-                    <img src="{{asset('images')}}/{{$a_img->n_Img}}" class="rounded w-full" alt="technology" />
+                    <img src="{{asset('images')}}/{{$a_img->n_Img}}" class="rounded h-40 w-40mx-auto" alt="technology" />
                   </a>
                 </div>
                 <div class=" rounded hover:bg-gray-200 mt-12 grid rows grid-flow-row md:auto-rows-min w-full">
@@ -164,9 +164,9 @@
                 @php
                     $t_img = $t_post->image;
                 @endphp
-                <div class="lg:h-2/5 w-full">
+                <div class=" w-full">
                   <a href="{{route('blog.post', ['id'=>$t_post->id])}}" class=" rounded cursor-pointer">
-                    <img src="{{asset('images')}}/{{$t_img->n_Img}}" class="rounded w-full" alt="technology" />
+                    <img src="{{asset('images')}}/{{$t_img->n_Img}}" class="rounded h-40" alt="technology" />
                   </a>
                 </div>
                 <div class=" rounded hover:bg-gray-200 mt-12 grid rows grid-flow-row md:auto-rows-min w-full">

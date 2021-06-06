@@ -121,7 +121,7 @@
                             <td class="py-3 px-6 text-center">
                                 <div class="flex item-center justify-center">
                                     <div class="m-1 pt-2  transform hover:text-purple-500 hover:scale-110">
-                                        <a class="shadow bg-purple-400 rounded  text-gray-100 p-2" href="{{route('manageReleases.editarRelease', ['id'=> $item->id])}}">Editar</a>
+                                        <a class="shadow bg-purple-400 rounded  text-gray-100 p-2" href="{{route('manageReleases.editar', ['id'=> $item->id])}}">Editar</a>
                                     </div>
                                     <div class=" m-1 shadow transform hover:text-purple-500 hover:scale-110">
                                         <form action="{{route('manageReleases.deleteRelease', ['id'=> $item->id])}}" method="POST">
